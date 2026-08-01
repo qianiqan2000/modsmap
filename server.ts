@@ -36,10 +36,24 @@ function ensureLocalZipFile(modId: string, title: string): string {
   return `/downloads/${fileName}`;
 }
 
-
 // State Storage
 let modsStore: ModItem[] = [...INITIAL_MODS];
 let sourcesStore: CollectorSource[] = [...INITIAL_SOURCES];
+
+// ==========================================
+// 2. 批量初始化：确保列表里所有预设 Mod 都能真实下载！
+// ==========================================
+function initAllLocalFiles() {
+  console.log('[ModsMap] 正在初始化所有预设 Mod 的本地下载文件...');
+  modsStore.forEach((mod) => {
+    mod.downloadUrl = ensureLocalZipFile(mod.id, mod.title);
+  });
+  console.log(`[ModsMap] 成功为 ${modsStore.length} 个 Mod 初始化本地可下载文件！`);
+}
+
+// 立即运行批量文件生成
+initAllLocalFiles();
+
 let logsStore: ScrapeLogEntry[] = [
   {
     id: 'log-1',
