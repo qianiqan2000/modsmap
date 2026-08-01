@@ -1,0 +1,6 @@
+{
+  "name": "ModsMap",
+  "description": "游戏Mod自动采集与实时推送平台 (modsmap.com)",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
