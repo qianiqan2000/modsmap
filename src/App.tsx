@@ -349,7 +349,7 @@ export default function App() {
           <span className="text-indigo-400">ARM VPS 优化版本</span>
         </div>
         <p className="text-slate-600">
-          支持全自动采集 NexusMods、CurseForge、Steam 工坊 RSS 数据，由 Google Gemini AI 智能提取中文精炼摘要与安装教程。
+          支持全自动采集 NexusMods、CurseForge、Steam 工坊 RSS 数据，© 2026 ModsMap. All rights reserved.
         </p>
       </footer>
 
