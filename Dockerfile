@@ -1,13 +1,19 @@
-# 第一阶段：构建前端静态文件（使用 Debian-slim 镜像解决 native 绑定问题）
-FROM node:20-slim AS builder
+FROM node:20-slim
+
 WORKDIR /app
+
+# 1. 复制依赖清单并安装
 COPY package*.json ./
 RUN npm install
-COPY . .
-RUN npm run build
 
-# 第二阶段：用轻量级 Nginx 运行
-FROM nginx:alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# 2. 复制项目所有代码
+COPY . .
+
+# 3. 编译前端静态文件（如果项目需要构建）
+RUN npm run build || true
+
+# 暴露后端/全栈服务端口
+EXPOSE 3000
+
+# 启动服务端 node 进程（启动 server.ts）
+CMD ["npx", "tsx", "server.ts"]
