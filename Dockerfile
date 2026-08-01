@@ -1,5 +1,5 @@
-# 第一阶段：构建前端静态文件
-FROM node:18-alpine AS builder
+# 第一阶段：构建前端静态文件（使用 Debian-slim 镜像解决 native 绑定问题）
+FROM node:20-slim AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
